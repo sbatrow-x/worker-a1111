@@ -22,7 +22,7 @@ RUN . /clone.sh BLIP https://github.com/salesforce/BLIP.git 48211a1594f1321b00f1
 
 #RUN apk add --no-cache wget && \
  #   wget -q -O model.safetensors "https://civitai.com/api/download/models/143906?type=Model&format=SafeTensor&size=pruned&fp=fp16"
-ADD model.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion
+#ADD model.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion
 
 
 
@@ -60,7 +60,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 #&& \ pip install -r requirements_versions.txt
 
 COPY --from=download /repositories/ ${ROOT}/repositories/
-COPY --from=download /model.safetensors /model.safetensors
+COPY model.safetensors /model.safetensors
 RUN mkdir ${ROOT}/interrogate && cp ${ROOT}/repositories/clip-interrogator/data/* ${ROOT}/interrogate
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install -r ${ROOT}/repositories/CodeFormer/requirements.txt
